@@ -74,7 +74,8 @@ server.register(plugins, function (err) {
     config: { auth : 'jwt' },
     handler: function(request, reply) {
 			console.log('server.js:80 - - - - - - - - - - - - - - - - - - request.payload:');
-			console.log(request.payload)
+      request.payload = {message: 'test'}
+      console.log('request.payload', request.payload)
 
 			sendEmail(request, function(err, response){
 				console.log(' - - - - - - - - - - - - - - - - - - GMAIL api err:');

@@ -30,7 +30,8 @@
   "dependencies": {
     "btoa": "^1.1.2",
     "env2": "^2.0.8",
-    "googleapis": "^7.0.0"
+    "googleapis": "^23.0.0",
+    "redis-connection": "^5.1.0"
   },
   "devDependencies": {
     "hapi": "^13.4.0",
