@@ -30,6 +30,7 @@
   "dependencies": {
     "btoa": "^1.1.2",
     "env2": "^2.0.8",
+    "fs": "0.0.1-security",
     "googleapis": "^23.0.0",
     "redis-connection": "^5.1.0"
   },

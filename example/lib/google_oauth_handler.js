@@ -23,7 +23,7 @@ module.exports = function custom_handler(req, reply, tokens, profile) {
     // redisClient.set('TEST_PROFILE', JSON.stringify(profile));
     redisClient.set(profile.id, JSON.stringify(profile), function(err) {
       // reply to client with a view
-      var link = '<a href="/sendemail">Send a Test Email</a>';
+      var link = '<a href="/compose">Send email</a>';
       return reply("Hello " +profile.name.givenName + ", You Logged in Using Google! " + link)
       .state('token', token); // see: http://hapijs.com/tutorials/cookies
     });
