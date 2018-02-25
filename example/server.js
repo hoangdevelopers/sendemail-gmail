@@ -78,7 +78,8 @@ server.register(plugins, function (err) {
     config: { auth: 'jwt' },
     handler: function (request, reply) {
       if (!request.payload) {
-        reply('Payload is require');
+        // reply('Payload is require');
+        reply.redirect('/');
         return;
       }
       if (!request.payload.filename) {
@@ -92,12 +93,18 @@ server.register(plugins, function (err) {
           output: false,
           console: false
         });
-        const mails = [];
+        let _mails= [], mails = [];
         const tasks = [];
         rd.on('line', function (line) {
-          mails.push(line);
+          _mails.push(line);
         });
         rd.on('close', () => {
+          function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
+
+          // usage example:
+          var mails = _mails.filter(onlyUnique);
           for (let mail of mails) {
             tasks.push(sendEmail(request, mail, (err, response) => {
               if (err) {
@@ -106,11 +113,11 @@ server.register(plugins, function (err) {
               }
               console.log(`Send to ${mail} succsess`);
             }));
-            Promise.all(tasks).then(() => {
-              console.log('Finish');
-              reply(`Success <a href="http://localhost:8000/compose">click here </a>to Send new email`);
-            });
           }
+          Promise.all(tasks).then(() => {
+            console.log('Finish');
+            reply(`Success <a href="http://localhost:8000/compose">click here </a>to Send new email`);
+          });
         });
       }
     }

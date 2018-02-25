@@ -1,3 +1,4 @@
+<script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 <h1>
   Compose Your Email:</h1>
 
@@ -19,6 +20,9 @@
   <fieldset class="pure-group">
     <label for="message">Message: </label>
     <textarea id="message" name="message" rows="10" cols="80" autofocus placeholder="Tell us what's on your mind..."></textarea>
+    <script>
+        CKEDITOR.replace( 'message' );
+    </script>
   </fieldset>
 
   <button class="button-success pure-button button-xlarge">
